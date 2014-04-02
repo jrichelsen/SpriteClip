@@ -1,5 +1,5 @@
 #!/bin/bash
-# Jon Richelsen
+# Jon Richelsens
 # CSE20212
 # SpriteClip 14.04-2
 # SpriteClip.sh
