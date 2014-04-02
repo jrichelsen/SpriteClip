@@ -1,28 +1,31 @@
 #!/bin/bash
 # Jon Richelsen
 # CSE20212
-# 1943_Project
+# SpriteClip 14.04-2
 # SpriteClip.sh
-# 	Takes user-inputted name and coordinates for sprites and formats them into SDL_Rect structs
-# Created	03/24/14
-# Edited	03/27/14 Added file input method
-# Edited	03/28/14 Debugged and finished file input method
-
+# 	Creates C-style structs from sprite coordinates on a sprite sheet
+# History
+# 	03/24/14	Jon Richelsen	Created (14.03-1)
+# 	03/27/14	Jon Richelsen	Add file input method (14.03-2)
+# 	03/28/14	Jon Richelsen	Debug and finish file input method (14.03-3)
+# 	04/02/14	Jon Richelsen	Standardize header (14.04-1)
+# 	04/02/14	Jon Richelsen	Remove brackets in struct member assigment, add comment structure to output file header (14.04-2)
 # Ideas for improvement
-# - Use shell pattern matching (like regular expression) for "y/n" prompt
-# - Use subfunction for "y/n" prompts
-# - Use subfunction for handling file extension
-# - Use nicer exit method
-# - Reduce code reuse in regards to different input methods
+# 	Add prompt for input filename
+# 	Use shell pattern matching (like regular expression) for "y/n" prompt
+# 	Use subfunction for "y/n" prompts
+# 	Use subfunction for handling file extension
+# 	Use nicer exit method
+# 	Reduce code reuse in regards to different input methods
 
 
 # Print script information to terminal
 cat <<- DONE1
-	
-	SpriteClip 14.03.1-3
+
+	SpriteClip 14.04-2
 	Jon Richelsen (jrichelsen@gmail.com)
 	Visit me at jonrichelsen.com
-	Takes user-inputted name and coordinates for sprites and formats them into SDL_Rect structs
+	Creates C-style structs from sprite coordinates on a sprite sheet
 	------------------------------
 DONE1
 
@@ -63,11 +66,13 @@ done
 
 # Overwrite output file with script information header
 cat <<- DONE2 > "$outFile"
-	Created with SpriteClip 14.03.1-3
+	/*
+	Created with SpriteClip 14.04-2
 	Jon Richelsen (jrichelsen@gmail.com)
 	Visit me at jonrichelsen.com
-	Takes user-inputted name and coordinates for sprites and formats them into SDL_Rect structs
-	------------------------------
+	Creates C-style structs from sprite coordinates on a sprite sheet
+	*/
+	
 DONE2
 
 # Check if user wants to use file input mode
@@ -107,10 +112,10 @@ if [ $inMode -eq 1 ]; then
 		let height=$LRyPos-$ULyPos+1
 	
 		echo "SDL_Rect $name; //$com" >> "$outFile"
-		echo "$name.[x] = $ULxPos;" >> "$outFile"
-		echo "$name.[y] = $ULyPos;" >> "$outFile"
-		echo "$name.[w] = $width;" >> "$outFile"
-		echo "$name.[h] = $height;" >> "$outFile"
+		echo "$name.x = $ULxPos;" >> "$outFile"
+		echo "$name.y = $ULyPos;" >> "$outFile"
+		echo "$name.w = $width;" >> "$outFile"
+		echo "$name.h = $height;" >> "$outFile"
 		echo "" >> "$outFile"
 		
 		let cnt=$cnt+1
@@ -143,10 +148,10 @@ else
 		let height=$LRyPos-$ULyPos+1
 	
 		echo "SDL_Rect $name; //$com" >> "$outFile"
-		echo "$name.[x] = $ULxPos;" >> "$outFile"
-		echo "$name.[y] = $ULyPos;" >> "$outFile"
-		echo "$name.[w] = $width;" >> "$outFile"
-		echo "$name.[h] = $height;" >> "$outFile"
+		echo "$name.x = $ULxPos;" >> "$outFile"
+		echo "$name.y = $ULyPos;" >> "$outFile"
+		echo "$name.w = $width;" >> "$outFile"
+		echo "$name.h = $height;" >> "$outFile"
 		echo "" >> "$outFile"
 
 		let cnt=$cnt+1
